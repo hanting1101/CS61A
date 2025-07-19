@@ -1,5 +1,58 @@
-# Ignore macOS system files used to store folder metadata
+# ======================
+# macOS 系統產生的垃圾檔案
+# ======================
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Spotlight
+.Spotlight-V100
+
+# macOS 時光機
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# ======================
+# Python 相關
+# ======================
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyd-d
+*.pyc.d
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# virtualenv 環境（如果未來使用）
+venv/
+ENV/
+env/
+.venv/
+
+# ======================
+# ok.py 系統產生的暫存檔
+# ======================
 .ok_history
 .ok_storage.db
+.ok/
+
+# ======================
+# 測試、備份、暫存類檔案
+# ======================
+*.swp
+*.bak
+*.tmp
+*.old
+*.orig
+*.save
+
+# ======================
+# VSCode 或其他 IDE 設定檔（視個人需求加入）
+# ======================
+.vscode/
+.idea/
