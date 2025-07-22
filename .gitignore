@@ -40,6 +40,7 @@ env/
 .ok_history
 .ok_storage.db
 .ok/
+.ok_storage
 
 # ======================
 # 測試、備份、暫存類檔案
