@@ -45,8 +45,14 @@ def boar_brawl(player_score, opponent_score):
 
     """
     # BEGIN PROBLEM 2
-    "*** YOUR CODE HERE ***"
+    opponent_point = int(opponent_score/10) % 10
+    player_point = player_score % 10
+    var = 3 * abs (opponent_point - player_point)
+    if var == 0:
+        return 1
+    return var
     # END PROBLEM 2
+
 
 
 def take_turn(num_rolls, player_score, opponent_score, dice=six_sided):
