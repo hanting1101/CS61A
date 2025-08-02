@@ -225,7 +225,14 @@ def is_always_roll(strategy, goal=GOAL):
     False
     """
     # BEGIN PROBLEM 7
-    "*** YOUR CODE HERE ***"
+    temp = strategy(0,0)
+    for i in range(0, goal + 1):
+        for j in range(0, goal + 1):
+            if(strategy(i,j) == temp):
+                temp = strategy(i,j)
+            else:
+                return False
+    return True
     # END PROBLEM 7
 
 
