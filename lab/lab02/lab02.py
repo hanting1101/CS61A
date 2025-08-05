@@ -85,6 +85,15 @@ def multiple(a, b):
     42
     """
     "*** YOUR CODE HERE ***"
+    if(a > b):
+        max, min = a, b
+    else:
+        max, min = b, a
+    while max % min != 0 :
+        temp = max - min
+        max = min
+        min = temp
+    return int(a * b / min)
 
 
 
