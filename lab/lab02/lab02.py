@@ -13,6 +13,13 @@ def composite_identity(f, g):
     >>> b1(4)                            # (4 + 1) ** 2 != 4 ** 2 + 1
     False
     """
+    def fn(n):
+        var1 = f(g(n))
+        var2 = g(f(n))
+        if(var1 == var2):
+            return True
+        return False
+    return fn
     "*** YOUR CODE HERE ***"
 
 
