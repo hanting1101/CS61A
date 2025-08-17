@@ -49,6 +49,9 @@ def digit_distance(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if int(n/10) == 0:
+        return 0
+    return abs(n % 10 - int(n/10) %10) + digit_distance(int(n/10))
 
 
 def interleaved_sum(n, odd_func, even_func):
@@ -73,6 +76,21 @@ def interleaved_sum(n, odd_func, even_func):
     True
     """
     "*** YOUR CODE HERE ***"
+    def is_even(n):
+        if n == 0:
+            return True
+        else:
+            return is_odd(n - 1)
+    def is_odd(n):
+        if n == 0:
+            return False
+        else:
+            return is_even(n - 1)
+    if n == 0:
+        return 0
+    if is_even(n):
+        return even_func(n) + interleaved_sum(n - 1, odd_func, even_func)
+    return odd_func(n) + interleaved_sum(n - 1, odd_func, even_func)
 
 
 def next_smaller_dollar(bill):
@@ -109,7 +127,15 @@ def count_dollars(total):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    def helper(amount, bill):
+        if amount == 0:
+            return 1
+        if amount < 0 or bill is None:
+            return 0
+        with_bill = helper(amount - bill, bill)
+        without_bill = helper(amount, next_smaller_dollar(bill) if bill != 1 else None)
+        return with_bill + without_bill
+    return helper(total, 100)
 
 def next_larger_dollar(bill):
     """Returns the next larger bill in order."""
