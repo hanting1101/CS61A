@@ -38,6 +38,13 @@ def pick(paragraphs, select, k):
     """
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
+    i = -1
+    for x in paragraphs:
+        if select(x):
+            i += 1
+        if i == k:
+            return x
+    return ''
     # END PROBLEM 1
 
 
@@ -58,6 +65,13 @@ def about(subject):
 
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    def string_match(s):
+        str = split(remove_punctuation(lower(s)))
+        for x in subject:
+            if x in str:
+                return True
+        return False
+    return string_match
     # END PROBLEM 2
 
 
@@ -88,6 +102,19 @@ def accuracy(typed, source):
     source_words = split(source)
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    type_len = len(typed_words)
+    source_len = len(source_words)
+    count = 0
+    if source_len == 0 and type_len == 0:
+        return 100.0
+    if source_len == 0 or type_len == 0:
+        return 0.0
+    for i in range (0, type_len):
+        if i > source_len - 1:
+            return (count / type_len) * 100
+        if source_words[i] == typed_words[i]:
+            count += 1
+    return (count / type_len) * 100
     # END PROBLEM 3
 
 
