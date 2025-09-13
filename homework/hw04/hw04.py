@@ -12,6 +12,17 @@ def shuffle(s):
     ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     """
     assert len(s) % 2 == 0, 'len(seq) must be even'
+    i = 0
+    j = len(s) // 2
+    result = []
+    for x in range(0,len(s)):
+        if x % 2 == 0:
+            result.append(s[i])
+            i += 1
+        else:
+            result.append(s[j])
+            j += 1
+    return result
     "*** YOUR CODE HERE ***"
 
 
@@ -38,6 +49,12 @@ def deep_map(f, s):
     True
     """
     "*** YOUR CODE HERE ***"
+    for i in range(0, len(s)):
+        if isinstance(s[i], list):
+            deep_map(f, s[i])
+        else:
+            s[i] = f(s[i])
+    return 
 
 
 HW_SOURCE_FILE=__file__
@@ -47,11 +64,13 @@ def planet(mass):
     """Construct a planet of some mass."""
     assert mass > 0
     "*** YOUR CODE HERE ***"
+    return ['planet', mass]
 
 def mass(p):
     """Select the mass of a planet."""
     assert is_planet(p), 'must call mass on a planet'
     "*** YOUR CODE HERE ***"
+    return p[1]
 
 def is_planet(p):
     """Whether p is a planet."""
@@ -103,6 +122,22 @@ def balanced(m):
     >>> check(HW_SOURCE_FILE, 'balanced', ['Index'])
     True
     """
+    left = m[1]
+    right = m[2]
+    left_torque = length(left) * total_mass(left[2])
+    right_torque = length(right) * total_mass(right[2])
+
+    if is_mobile(left[2]) and is_mobile(right[2]):
+        return balanced(left[2]) and balanced(right[2]) and (left_torque == right_torque)
+
+    elif is_mobile(left[2]) and (not is_mobile(right[2])):
+        return balanced(left[2]) and (left_torque == right_torque)
+
+    elif (not is_mobile(left[2])) and is_mobile(right[2]):
+        return balanced(right[2]) and (left_torque == right_torque)
+
+    else:
+        return (left_torque == right_torque)
     "*** YOUR CODE HERE ***"
 
 
@@ -124,6 +159,13 @@ def berry_finder(t):
     True
     """
     "*** YOUR CODE HERE ***"
+    for x in t:
+        if is_tree(x):
+            if berry_finder(x):
+                return True
+        if x == 'berry':
+            return True
+    return False
 
 
 HW_SOURCE_FILE=__file__
@@ -139,7 +181,12 @@ def max_path_sum(t):
     17
     """
     "*** YOUR CODE HERE ***"
-
+    if is_leaf(t):
+        return t[0]
+    MAX = max_path_sum(t[1])
+    for branch in t[2:]:
+        MAX = max(MAX, max_path_sum(branch))
+    return t[0] + MAX
 
 def mobile(left, right):
     """Construct a mobile from a left arm and a right arm."""
